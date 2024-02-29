@@ -1,0 +1,172 @@
+// sass scss/style.scss style.css --watch
+@use 'initial';
+@use 'variables' as var;
+@use 'mixins';
+
+.header__title {
+    font-size: 1em;
+    color: var.$DarkGrayishCyan;
+    text-align: center;
+    margin: 30px 0;
+    letter-spacing: 8px;
+}
+
+.calculator {
+    background-color: var.$White;
+    width: 375px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+}
+
+.input-container {
+    &__bill-label {
+        @include mixins.label;
+    }
+
+    &__bill-input {
+        @include mixins.input('../images/icon-dollar.svg');
+    }
+}
+
+.btns {
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+
+    &__legend {
+        @include mixins.label;
+    }
+
+    &__btn {
+        background-color: var.$VeryDarkCyan;
+        font-family: var.$font;
+        color: var.$White;
+        border: none;
+        border-radius: 5px;
+        width: 147px;
+        padding: 10px;
+        font-size: 0.8em;
+        font-weight: 700;
+        letter-spacing: 1px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .input {
+        @include mixins.input(unset);
+    }
+
+    &__btn--active {
+        background-color: var.$StrongCyan;
+        color: var.$VeryDarkCyan;
+    }
+}
+
+.input-container {
+    &__people-label {
+        @include mixins.label;
+    }
+
+    
+    &__people-input {
+        @include mixins.input('../images/icon-person.svg');
+    }
+
+}
+
+.error {
+    &::after {
+        content: "Can't be zero";
+        color: red;
+        font-size: 0.75em;
+    }
+}
+
+.output-container {
+    margin-top: 30px;
+    background-color: var.$VeryDarkCyan;
+    padding: 30px;
+    border-radius: 20px;
+
+    .result {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+
+        &__title {
+            color: var.$White;
+            font-size: 0.6em;
+            letter-spacing: 1px;
+        }
+
+        &__subtitle {
+            color: var.$GrayishCyan;
+            font-size: 0.6em;
+            letter-spacing: 1px;
+        }
+
+        &__value, &__value--total {
+            color: var.$StrongCyan;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-align: end;
+        }
+
+    }
+
+    &__reset-btn {
+        margin-top: 30px;
+        font-family: var.$font;
+        background-color: var.$StrongCyan;
+        color: var.$VeryDarkCyan;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        padding: 10px;
+        font-size: 0.7em;
+        font-weight: 700;
+        letter-spacing: 1px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: var.$LightGrayishCyan;
+        }
+
+    }
+}
+
+@media (min-width: 1300px) {
+    .header__title {
+        margin: 160px 0 90px;
+    }
+
+    .calculator {
+        width: 900px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+        border-radius: 20px;
+    }
+
+    .input-container {
+        grid-column: 1 / 2;
+    }
+
+    .output-container {
+        grid-column: 2 / 3;
+        margin-top: 0;
+
+        &__reset-btn {
+            margin-top: 130px;
+        }
+    }
+
+    .btns {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
